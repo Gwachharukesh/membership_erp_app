@@ -34,14 +34,14 @@ class DateTimeUtils {
 
   static bool isTokenExpired(String tokenExpiryDate){
     try{
-      final format = DateFormat("EEE, dd MMM yyyy HH;mm:ss 'GMT'");
+      final format = DateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'");
 
       // Parse as UTC
       DateTime expiryUtc = format.parse(tokenExpiryDate, true);
 
       // Convert to local timezone (device's timeezone: NPT in your case)
       DateTime expiryLocal = expiryUtc.toLocal();
-
+      
       DateTime now = DateTime.now(); // Already local
       log('Expired :$expiryLocal');
       log('Now: $now');
