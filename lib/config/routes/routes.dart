@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:membership_erp_app/features/dashboard/views/dashboard_navigation_handler.dart';
 
+import '../../app_init/views/app_init_view.dart';
 import '../../auth/views/signin_view.dart';
 import '../../auth/views/signup_view.dart';
 import '../../features/notification/views/notification_view.dart';
@@ -8,6 +9,7 @@ import '../../features/onboarding/views/onboarding_view.dart';
 import 'route_not_found_view.dart';
 
 class RouteHelper {
+  static const String appInit = AppInit.routeName;
   static const String onboardingView = OnboardingView.routeName;
   static const String signinView = SigninView.routeName;
   static const String signupView = SignupView.routeName;
@@ -17,6 +19,8 @@ class RouteHelper {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case appInit:
+        return _slideTransition(const AppInit());
       case onboardingView:
         return _slideTransition(const OnboardingView());
       case signinView:

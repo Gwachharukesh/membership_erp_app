@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:membership_erp_app/auth/views/signin_view.dart';
+import 'package:membership_erp_app/common/constants/shared_constant.dart';
 import 'package:membership_erp_app/common/constants/sizzed_box_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/paddng_constants.dart';
 import '../utils/onboarding_data.dart';
 
 class OnboardingView extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/OnboardingView';
   const OnboardingView({super.key});
 
   @override
@@ -127,13 +129,16 @@ class _OnboardingViewState extends State<OnboardingView> {
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 50),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (value < onboardingData.length - 1) {
                           _pageController.nextPage(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
                           );
                         } else {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool(SharedConstant.showOnboarding, false);
                           Navigator.pushReplacementNamed(
                             context,
                             SigninView.routeName,

@@ -16,6 +16,7 @@ class DashboardBottomNavigationBar extends StatelessWidget {
       valueListenable: _selectedIndex,
       builder: (context, value, child) {
         return BottomNavigationBar(
+          landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
           backgroundColor: Colors.transparent,
           elevation: 0,
           type: BottomNavigationBarType.fixed,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:membership_erp_app/common/widgets/image_widget.dart';
 
 class BenefitSlider extends StatelessWidget {
   final ThemeData theme;
@@ -37,10 +38,9 @@ class BenefitSlider extends StatelessWidget {
           final benefit = benefits[index];
           return Padding(
             padding: const EdgeInsets.only(right: 12),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(benefit["image"]!, fit: BoxFit.cover),
-            ),
+            child: ImageWidget(imageUrl: benefit["image"]!),
+
+
           );
         },
       ),

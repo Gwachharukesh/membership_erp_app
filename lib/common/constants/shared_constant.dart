@@ -1,4 +1,5 @@
 class SharedConstant {
+  static const String showOnboarding = 'showOnboarding';
   static const String userTypeId = 'userTypeId';
   static const String dataBase = 'dataBase';
   static const String syncedDioOfflinedata = 'syncedDioOfflinedata';

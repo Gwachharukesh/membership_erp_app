@@ -1,4 +1,6 @@
 
+import '../../config/routes/routes.dart';
+
 enum UserRole {
   dealerIncharge(1, 'Dealer_Incharge'), //mean salesman
   salesOfficer(2, ' Sales_Officer'),
@@ -27,36 +29,35 @@ enum UserType {
   final int? id;
 }
 
-// extension UserTypeExtension on UserType {
-//   /// get default route for user while logged in
-//   RouteHelper getRoute() {
-//     switch (this) {
-//       case UserType.systemuser:
-//         return RouteHelper.dashboardView;
-//       case UserType.member:
-//         return RouteHelper.dashboardView;
+extension UserTypeExtension on UserType {
+  /// get default route for user while logged in
+  String getRoute() {
+    switch (this) {
+      case UserType.systemuser:
+        return RouteHelper.dashboardView;
+      case UserType.member:
+        return RouteHelper.dashboardView;
+      default:
+        return RouteHelper.signinView;
+    }
+  }
+}
 
-//       default:
-//         return RouteHelper.signinView;
-//     }
-//   }
-// }
+extension UserArgument on UserType {
+  /// get default route for user while logged in
+  Object getArgument() {
+    switch (this) {
+      case UserType.systemuser:
+        return true;
+      case UserType.member:
+        return true;
 
-// extension UserArgument on UserType {
-//   /// get default route for user while logged in
-//   Object getArgument() {
-//     switch (this) {
-//       case UserType.systemuser:
-//         return true;
-//       case UserType.member:
-//         return true;
-
-//       case UserType.unknown:
-//       default:
-//         return true;
-//     }
-//   }
-// }
+      case UserType.unknown:
+      default:
+        return true;
+    }
+  }
+}
 
 // class UserTypeModel {
 //   UserTypeModel({required this.id, required this.text});
