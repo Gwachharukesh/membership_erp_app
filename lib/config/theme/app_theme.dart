@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:membership_erp_app/common/constants/shared_constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppThemes {
   // Light Theme
@@ -60,13 +62,36 @@ class AppThemes {
 }
 
 class ThemeNotifier {
-  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
-    ThemeMode.light,
-  );
+  static final ValueNotifier<ThemeMode> themeModeNotifier =
+      ValueNotifier(ThemeMode.light);
 
+  /// Toggle between light and dark mode
   static void toggleTheme() {
-    themeModeNotifier.value = themeModeNotifier.value == ThemeMode.light
-        ? ThemeMode.dark
-        : ThemeMode.light;
+    themeModeNotifier.value =
+        themeModeNotifier.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+
+    // Save whenever theme changes
+    _saveTheme(themeModeNotifier.value);
+  }
+
+  /// Save theme mode to SharedPreferences
+  static Future<void> _saveTheme(ThemeMode mode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      SharedConstant.themeMode,
+      mode == ThemeMode.light ? 'light' : 'dark',
+    );
+  }
+
+  /// Load theme from SharedPreferences on app start
+  static Future<void> loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? theme = prefs.getString(SharedConstant.themeMode);
+
+    if (theme == 'dark') {
+      themeModeNotifier.value = ThemeMode.dark;
+    } else {
+      themeModeNotifier.value = ThemeMode.light;
+    }
   }
 }

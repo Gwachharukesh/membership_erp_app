@@ -67,4 +67,5 @@ class SharedConstant {
   static const String isBackgroundServiceRunning = 'isBackgroundServiceRunning';
   static const String syncDate = 'syncDate';
   static const String showChucker = 'showChucker';
+  static const String themeMode = 'themeMode';
 }

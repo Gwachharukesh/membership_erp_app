@@ -10,8 +10,6 @@ import 'package:membership_erp_app/features/notification/view_model/notification
 import 'package:membership_erp_app/features/order/repostitory/order_repository.dart';
 import 'package:membership_erp_app/features/order/view_model/order_bloc/order_bloc.dart';
 
-import 'auth/repository/auth_repository.dart';
-import 'auth/view_model/auth_bloc.dart';
 import 'common/constants/shared_pref_initialization.dart';
 import 'config/routes/routes.dart';
 import 'config/theme/app_theme.dart';
@@ -27,6 +25,7 @@ void main() async {
     log('Error setting ChuckerFlutter.showOnRelease: $e');
   }
   await SharedPreferencesService.init();
+  await ThemeNotifier.loadTheme();
   try {
     runApp(const MyApp());
   } catch (e) {
