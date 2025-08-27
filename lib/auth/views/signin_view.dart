@@ -15,6 +15,20 @@ import '../view_model/auth_bloc.dart';
 import '../view_model/auth_event.dart';
 import '../view_model/auth_state.dart';
 
+class Signin extends StatelessWidget {
+  static const routeName = '/signin';
+  const Signin({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authbloc = AuthBloc(AuthRepository());
+    return BlocProvider(
+      create: (context) => authbloc..add(const LoadData()),
+      child: SigninView(),
+    );
+  }
+}
+
 class SigninView extends StatefulWidget {
   static const routeName = '/signinView';
   const SigninView({super.key});
@@ -24,7 +38,8 @@ class SigninView extends StatefulWidget {
 }
 
 class _SigninViewState extends State<SigninView> {
-  late AuthBloc _authBloc;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -35,16 +50,9 @@ class _SigninViewState extends State<SigninView> {
   );
   // bool checkboxValueRemberMe = true;
   final ValueNotifier<bool> checkboxValuePermission = ValueNotifier(true);
-  @override
-  void initState() {
-    super.initState();
-    final AuthRepository authRepo = AuthRepository();
-    _authBloc = AuthBloc(authRepo);
-  }
 
   @override
   void dispose() {
-    _authBloc.close();
     phoneController.dispose();
     passwordController.dispose();
     rememberMeNotifier.dispose();
@@ -64,37 +72,37 @@ class _SigninViewState extends State<SigninView> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: BlocProvider(
-        create: (_) => _authBloc..add(const LoadData()),
-        child: BlocListener<AuthBloc, AuthState>(
-          listenWhen: (previous, current) =>
-              current.authState != previous.authState,
-          listener: (context, state) {
-            if (state.authState == AuthStatus.failed) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      state.message.toString(),
-                      style: const TextStyle(color: Colors.white),
-                    ),
+      body: BlocListener<AuthBloc, AuthState>(
+        listenWhen: (previous, current) =>
+            current.authState != previous.authState,
+        listener: (context, state) {
+          if (state.authState == AuthStatus.failed) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.message.toString(),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                );
-            }
-
-            if (state.authState == AuthStatus.success) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DashboardNavigationHandler(),
                 ),
-                (route) => false,
               );
-            }
-          },
-          child: Padding(
-            padding: PaddingConstants.a16,
+          }
+
+          if (state.authState == AuthStatus.success) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DashboardNavigationHandler(),
+              ),
+              (route) => false,
+            );
+          }
+        },
+        child: Padding(
+          padding: PaddingConstants.a16,
+          child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -121,7 +129,7 @@ class _SigninViewState extends State<SigninView> {
                   buildWhen: (previous, current) =>
                       current.username != previous.username,
                   builder: (context, state) {
-                    phoneController.text = state.username ?? '';
+                    phoneController.text = state.username;
                     return TextFormField(
                       onChanged: (value) => context.read<AuthBloc>().add(
                         OnUserNameChange(username: value),
@@ -160,7 +168,7 @@ class _SigninViewState extends State<SigninView> {
                     return ValueListenableBuilder<bool>(
                       valueListenable: passwordVisibleNotifier,
                       builder: (context, isVisible, _) {
-                        passwordController.text = state.password ?? '';
+                        passwordController.text = state.password;
                         return TextFormField(
                           controller: passwordController,
                           obscureText: !isVisible,
@@ -300,7 +308,9 @@ class _SigninViewState extends State<SigninView> {
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
-                          context.read<AuthBloc>().add(Signin());
+                          if (_formKey.currentState?.validate() ?? false) {
+                            context.read<AuthBloc>().add(SigninUser());
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: theme.primaryColor,

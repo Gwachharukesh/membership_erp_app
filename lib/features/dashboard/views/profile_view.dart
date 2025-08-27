@@ -23,7 +23,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Building proile");
     final theme = Theme.of(context);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),

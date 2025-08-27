@@ -33,7 +33,12 @@ class CustomProfileIcon extends StatelessWidget {
           },
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(width: 2, color: Colors.black),
+          border: Border.all(
+            width: 2,
+            color: theme.brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
           borderRadius: BorderRadius.circular(size / 1.5),
         ),
         child: ClipRRect(

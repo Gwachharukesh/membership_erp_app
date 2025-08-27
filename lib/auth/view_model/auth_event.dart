@@ -7,7 +7,7 @@ class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class Signin extends AuthEvent {}
+class SigninUser extends AuthEvent {}
 
 class OnRememberMeChanged extends AuthEvent {
   const OnRememberMeChanged({required this.status});

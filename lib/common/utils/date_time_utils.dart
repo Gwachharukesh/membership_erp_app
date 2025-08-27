@@ -14,12 +14,16 @@ class DateTimeUtils {
         .toDateTime();
   }
 
-  static String formatDateTimeString(String date, {
-    bool isNepali = false,String pattern = 'dd-MMMM-yyyy'
-  }){
-    if(date.isNotEmpty){
-      if(isNepali){
-        return NepaliDateFormat(pattern).format(date.toDateTime()!.toNepaliDateTime());
+  static String formatDateTimeString(
+    String date, {
+    bool isNepali = false,
+    String pattern = 'dd-MMMM-yyyy',
+  }) {
+    if (date.isNotEmpty) {
+      if (isNepali) {
+        return NepaliDateFormat(
+          pattern,
+        ).format(date.toDateTime()!.toNepaliDateTime());
       }
       return DateFormat(pattern).format(DateTime.parse(date));
     }
@@ -32,8 +36,8 @@ class DateTimeUtils {
         date1.day == date2.day;
   }
 
-  static bool isTokenExpired(String tokenExpiryDate){
-    try{
+  static bool isTokenExpired(String tokenExpiryDate) {
+    try {
       final format = DateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'");
 
       // Parse as UTC
@@ -41,15 +45,15 @@ class DateTimeUtils {
 
       // Convert to local timezone (device's timeezone: NPT in your case)
       DateTime expiryLocal = expiryUtc.toLocal();
-      
+
       DateTime now = DateTime.now(); // Already local
       log('Expired :$expiryLocal');
       log('Now: $now');
       log('Is Expired: ${expiryLocal.isBefore(now)}');
       return expiryLocal.isBefore(now);
-    }catch (e){
+    } catch (e) {
       log("Error processing token expiry date: $e");
-      return true; 
+      return true;
     }
   }
 }

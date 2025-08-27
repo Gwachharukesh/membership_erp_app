@@ -43,7 +43,7 @@ class AuthState extends Equatable {
     bool? agreePolicy,
   }) {
     return AuthState(
-      username: userName ?? this.username,
+      username: userName ?? username,
       password: password ?? this.password,
       dbCode: dbCode ?? this.dbCode,
       authState: authState ?? this.authState,

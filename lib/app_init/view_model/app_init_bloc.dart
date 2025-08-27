@@ -19,7 +19,7 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
             .get(SharedConstant.expires)
             ?.toString();
         if (sharedPreferencesService.getBool(SharedConstant.showOnboarding) ??
-            false) {
+            true) {
           add(AppInitNavigateToOnboarding());
         } else if (tokenExpireTime != null) {
           add(AppInitTokenValidated(tokenExpireTime));
@@ -35,6 +35,7 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
         emit(state.copyWith(status: AppInitStatus.navigateToOnboarding));
       }
     });
+
     on<AppInitTokenValidated>((event, emit) {
       try {
         bool isTokenValid = DateTimeUtils.isTokenExpired(

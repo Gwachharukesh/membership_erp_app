@@ -4,8 +4,8 @@ class AppThemes {
   // Light Theme
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Colors.black,
-    scaffoldBackgroundColor: Color(0xFFF5F5F5),
+    primaryColor: Color(0xFF008A3F),
+    scaffoldBackgroundColor: Color(0xFFEFF3ED),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black, // text & icons
@@ -16,14 +16,14 @@ class AppThemes {
       bodyMedium: TextStyle(color: Colors.black),
     ),
     colorScheme: const ColorScheme.light(
-      primary: Colors.black,
+      primary: Color(0xFF008A3F),
       onPrimary: Colors.white,
       surface: Color(0xFFFDFDFD),
       onSurface: Colors.black,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF008A3F),
         foregroundColor: Colors.white,
       ),
     ),
@@ -32,10 +32,10 @@ class AppThemes {
   // Dark Theme
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.orange,
-    scaffoldBackgroundColor: Colors.black,
+    primaryColor: Color(0xFF95E0A5),
+    scaffoldBackgroundColor: Color(0xFF181F1B),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF181F1B),
       foregroundColor: Colors.white,
       elevation: 0,
     ),
@@ -44,7 +44,7 @@ class AppThemes {
       bodyMedium: TextStyle(color: Colors.white),
     ),
     colorScheme: const ColorScheme.dark(
-      primary: Colors.orange,
+      primary: Color(0xFF95E0A5),
       onPrimary: Colors.white,
       surface: Color(0xFF121212),
 
@@ -52,7 +52,7 @@ class AppThemes {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.orange,
+        backgroundColor: Color(0xFF95E0A5),
         foregroundColor: Colors.white,
       ),
     ),

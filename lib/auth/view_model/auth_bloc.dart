@@ -10,7 +10,6 @@ import 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _repository;
   AuthBloc(this._repository) : super(AuthState()) {
-    
     on<LoadData>((event, emit) {
       SharedPreferencesService shared = SharedPreferencesService();
       String? userName = shared.getString(SharedConstant.loginUserName);
@@ -21,7 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
     });
 
-    on<Signin>((event, emit) async {
+    on<SigninUser>((event, emit) async {
       emit(state.copyWith(authState: AuthStatus.loading));
       try {
         final response = await _repository.signin(

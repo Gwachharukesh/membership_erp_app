@@ -43,14 +43,12 @@ class MyApp extends StatelessWidget {
     final NotificationRepository notificationRepository =
         NotificationRepositoryImpl();
     final OrderRepository orderRepository = OrderRepositoryImpl();
-    final AuthRepository authRepository = AuthRepository();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => NotificationBloc(notificationRepository),
         ),
         BlocProvider(create: (context) => OrderBloc(orderRepository)),
-        BlocProvider(create: (context) => AuthBloc(authRepository)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

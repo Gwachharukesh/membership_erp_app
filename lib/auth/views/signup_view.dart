@@ -180,7 +180,12 @@ class _SignupViewState extends State<SignupView> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
-                child: Text("Sign Up", style: theme.textTheme.titleSmall),
+                child: Text(
+                  "Sign Up",
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],

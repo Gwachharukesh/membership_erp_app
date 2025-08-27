@@ -160,7 +160,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                 ),
               ),
 
-              const Divider(height: 1),
+              const Divider(height: 1, color: Colors.white),
 
               const SizedBox(height: 10),
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:membership_erp_app/app_init/view_model/app_init_event.dart';
 import 'package:membership_erp_app/auth/enums/user_type_enum.dart';
 import 'package:membership_erp_app/common/constants/shared_pref_initialization.dart';
+import 'package:membership_erp_app/features/onboarding/views/onboarding_view.dart';
 
 import '../../auth/views/signin_view.dart';
 import '../view_model/app_init_bloc.dart';
@@ -26,7 +27,6 @@ class AppInit extends StatelessWidget {
 class AppInitView extends StatelessWidget {
   const AppInitView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -34,10 +34,16 @@ class AppInitView extends StatelessWidget {
       child: Scaffold(
         body: BlocListener<AppInitBloc, AppInitState>(
           listener: (context, state) {
-            if (state.status == AppInitStatus.navigateToLogin) {
+            if (state.status == AppInitStatus.navigateToOnboarding) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                SigninView.routeName,
+                OnboardingView.routeName,
+                (route) => false,
+              );
+            } else if (state.status == AppInitStatus.navigateToLogin) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                Signin.routeName,
                 (route) => false,
               );
             }
@@ -57,7 +63,7 @@ class AppInitView extends StatelessWidget {
               ).showSnackBar(SnackBar(content: Text('Error: ${state.error}')));
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                SigninView.routeName,
+                Signin.routeName,
                 (route) => false,
               );
             }

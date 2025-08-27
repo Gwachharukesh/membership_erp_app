@@ -1,15 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:membership_erp_app/auth/models/token_models.dart';
+import 'package:membership_erp_app/auth/view_model/auth_bloc.dart';
 import 'package:membership_erp_app/auth/views/signin_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // import '../../view/landing_screen/weclcome_screen/screen/welcome_screen.dart';
+import '../../auth/view_model/auth_event.dart';
 import '../../common/constants/shared_constant.dart';
 import '../../main.dart';
 
 class AuthorizationInterceptor extends Interceptor {
   static const String _authorizationHeader = 'Authorization';
   static const String _deviceIdHeader = 'DeviceId';
+  bool _isRefreshing = false;
 
   @override
   void onRequest(
@@ -53,8 +58,21 @@ class AuthorizationInterceptor extends Interceptor {
           'Connection timeout. Please check your internet connection.',
         );
       } else if (response?.statusCode == 401) {
-        return;
-        // _navigateToLoginScreen();
+        if (!_isRefreshing) {
+          _isRefreshing = true;
+          try {
+            refreshToken();
+          } catch (e) {
+            _isRefreshing = false;
+            _showError("Failed to refresh token. Please login again.");
+            navigatorKey.currentState?.pushReplacementNamed(
+              Signin.routeName,
+            );
+          }
+        } else {
+          _showError("Authentication error. Please login again.");
+          navigatorKey.currentState?.pushReplacementNamed(Signin.routeName);
+        }
       } else if (response?.statusCode == 403) {
         _showError('Acess denied for user \n Please Contact Administrator ');
       } else if (response?.statusCode == 503) {
@@ -112,15 +130,37 @@ class AuthorizationInterceptor extends Interceptor {
     );
   }
 
-  void _navigateToLoginScreen() async {
+  void _navigateToSignin() async {
     SharedPreferences shared = await SharedPreferences.getInstance();
     shared
       ..remove(SharedConstant.expires)
       ..remove(SharedConstant.accessToken);
 
     navigatorKey.currentState?.pushNamedAndRemoveUntil(
-      SigninView.routeName,
+      Signin.routeName,
       (route) => false,
     );
+  }
+
+  Future<TokenModel?> refreshToken() async {
+    SharedPreferences shared = await SharedPreferences.getInstance();
+    String uername = shared.getString(SharedConstant.userName) ?? '';
+    String password = shared.getString(SharedConstant.loginPassword) ?? '';
+
+    if (uername.isEmpty && password.isEmpty) {
+      _navigateToSignin();
+      return null;
+    }
+    try {
+      navigatorKey.currentContext!.read<AuthBloc>()
+        ..add(OnUserNameChange(username: uername))
+        ..add(OnPasswordChange(password: password))
+        ..add(SigninUser());
+    } catch (e) {
+      _navigateToSignin();
+      return null;
+    }
+    _navigateToSignin();
+    return null;
   }
 }

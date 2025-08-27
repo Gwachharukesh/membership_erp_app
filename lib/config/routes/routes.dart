@@ -11,6 +11,7 @@ import 'route_not_found_view.dart';
 class RouteHelper {
   static const String appInit = AppInit.routeName;
   static const String onboardingView = OnboardingView.routeName;
+  static const String signin = Signin.routeName;
   static const String signinView = SigninView.routeName;
   static const String signupView = SignupView.routeName;
   static const String dashboardView = DashboardNavigationHandler.routeName;
@@ -23,6 +24,8 @@ class RouteHelper {
         return _slideTransition(const AppInit());
       case onboardingView:
         return _slideTransition(const OnboardingView());
+      case signin:
+        return _slideTransition(Signin());
       case signinView:
         return _slideTransition(SigninView());
       case signupView:

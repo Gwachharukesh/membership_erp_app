@@ -141,7 +141,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           prefs.setBool(SharedConstant.showOnboarding, false);
                           Navigator.pushReplacementNamed(
                             context,
-                            SigninView.routeName,
+                            Signin.routeName,
                           );
                         }
                       },

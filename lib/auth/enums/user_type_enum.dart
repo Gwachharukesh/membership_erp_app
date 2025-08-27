@@ -38,7 +38,7 @@ extension UserTypeExtension on UserType {
       case UserType.member:
         return RouteHelper.dashboardView;
       default:
-        return RouteHelper.signinView;
+        return RouteHelper.signin;
     }
   }
 }
