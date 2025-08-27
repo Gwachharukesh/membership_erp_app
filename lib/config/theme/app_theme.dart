@@ -65,16 +65,15 @@ class ThemeNotifier {
   static final ValueNotifier<ThemeMode> themeModeNotifier =
       ValueNotifier(ThemeMode.light);
 
-  /// Toggle between light and dark mode
   static void toggleTheme() {
     themeModeNotifier.value =
         themeModeNotifier.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
 
-    // Save whenever theme changes
+    // Save to local whenever theme changes
     _saveTheme(themeModeNotifier.value);
   }
 
-  /// Save theme mode to SharedPreferences
+  /// Save theme mode to local
   static Future<void> _saveTheme(ThemeMode mode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(
@@ -83,7 +82,8 @@ class ThemeNotifier {
     );
   }
 
-  /// Load theme from SharedPreferences on app start
+  /// Load theme from local.
+  /// If no theme is saved, default to light theme.
   static Future<void> loadTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? theme = prefs.getString(SharedConstant.themeMode);
