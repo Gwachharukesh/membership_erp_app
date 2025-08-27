@@ -4,6 +4,7 @@ import 'package:membership_erp_app/common/widgets/custom_profile.dart';
 import 'package:membership_erp_app/features/notification/views/notification_view.dart';
 
 import '../../../config/theme/app_theme.dart';
+import '../../../config/theme/view_model/themeNotifier.dart';
 
 class DashboardAppbar extends StatelessWidget {
   const DashboardAppbar({

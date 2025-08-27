@@ -13,6 +13,7 @@ import 'package:membership_erp_app/features/order/view_model/order_bloc/order_bl
 import 'common/constants/shared_pref_initialization.dart';
 import 'config/routes/routes.dart';
 import 'config/theme/app_theme.dart';
+import 'config/theme/view_model/themeNotifier.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -25,7 +26,7 @@ void main() async {
     log('Error setting ChuckerFlutter.showOnRelease: $e');
   }
   await SharedPreferencesService.init();
-  await ThemeNotifier.loadTheme();
+  await ThemeNotifier.initTheme();
   try {
     runApp(const MyApp());
   } catch (e) {
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
             : [ChuckerFlutter.navigatorObserver],
         builder: (context, child) {
           return ValueListenableBuilder<ThemeMode>(
-            valueListenable: ThemeNotifier.themeModeNotifier,
+            valueListenable: ThemeNotifier.themeNotifier,
             builder: (context, themeMode, _) {
               return AnimatedTheme(
                 data: themeMode == ThemeMode.dark
