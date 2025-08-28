@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:membership_erp_app/features/dashboard/views/dashboard_navigation_handler.dart';
+import 'package:membership_erp_app/features/onboarding/views/homepage.dart';
 
 import '../../app_init/views/app_init_view.dart';
 import '../../auth/views/signin_view.dart';
@@ -11,6 +12,7 @@ import 'route_not_found_view.dart';
 class RouteHelper {
   static const String appInit = AppInit.routeName;
   static const String onboardingView = OnboardingView.routeName;
+  static const String showcaseView = Showcase.routeName;
   static const String signin = Signin.routeName;
   static const String signinView = SigninView.routeName;
   static const String signupView = SignupView.routeName;
@@ -24,6 +26,8 @@ class RouteHelper {
         return _slideTransition(const AppInit());
       case onboardingView:
         return _slideTransition(const OnboardingView());
+      case showcaseView:
+        return _slideTransition(const Showcase());
       case signin:
         return _slideTransition(Signin());
       case signinView:

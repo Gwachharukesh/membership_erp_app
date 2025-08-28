@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/border_radius_constants.dart';
-import '../../../common/constants/paddng_constants.dart';
 import '../../../common/constants/sizzed_box_constants.dart';
 import '../models/notification_model.dart';
 
@@ -22,31 +20,19 @@ class NotificationWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              Container(
-                padding: PaddingConstants.a8,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusConstants.br32,
-                  color: theme.colorScheme.surfaceTint.withValues(alpha: .4),
-                ),
-                child: Icon(Icons.notifications, color: Colors.white),
+          Badge(
+            isLabelVisible:
+                !(notification.isRead), // show badge only if not read
+            smallSize: 10,
+            backgroundColor: Colors.red,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32),
+                color: theme.colorScheme.surfaceTint.withValues(alpha: .4),
               ),
-              if (!(notification.isRead))
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 10,
-                    height: 10,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-            ],
+              child: const Icon(Icons.notifications, color: Colors.white),
+            ),
           ),
           SizedBoxConstants.w10,
 

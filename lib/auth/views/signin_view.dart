@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:membership_erp_app/auth/repository/auth_repository.dart';
 import 'package:membership_erp_app/auth/views/signup_view.dart';
@@ -143,6 +144,13 @@ class _SigninViewState extends State<SigninView> {
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                       style: theme.textTheme.bodyLarge,
+                      inputFormatters: [
+                        FilteringTextInputFormatter
+                            .digitsOnly, // allow only digits
+                        LengthLimitingTextInputFormatter(
+                          10,
+                        ), // limit to 10 digits
+                      ],
                       decoration: InputDecoration(
                         hintText: "Phone Number",
                         hintStyle: theme.textTheme.bodySmall,

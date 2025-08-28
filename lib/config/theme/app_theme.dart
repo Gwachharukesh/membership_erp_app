@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:membership_erp_app/common/constants/shared_constant.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'repository/theme_repository.dart';
 
 class AppThemes {
   // Light Theme
@@ -19,6 +15,8 @@ class AppThemes {
       bodyLarge: TextStyle(color: Colors.black),
       bodyMedium: TextStyle(color: Colors.black),
     ),
+    // cardColor: Color(0x8076BF4E),
+    cardColor: Color(0xFF008A3F),
     colorScheme: const ColorScheme.light(
       primary: Color(0xFF008A3F),
       onPrimary: Colors.white,
@@ -47,11 +45,11 @@ class AppThemes {
       bodyLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.white),
     ),
+    cardColor: Color(0x3349A96C),
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFF95E0A5),
       onPrimary: Colors.white,
       surface: Color(0xFF121212),
-
       onSurface: Colors.white,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -62,4 +60,3 @@ class AppThemes {
     ),
   );
 }
-

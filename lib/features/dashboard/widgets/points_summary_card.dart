@@ -49,10 +49,11 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
       //   ),
       // ),
       child: Container(
-        margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+        // margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: widget.theme.primaryColor,
+          // color: widget.theme.primaryColor,
+          color: widget.theme.cardColor,
           // gradient: LinearGradient(
           //   colors: [
           //     widget.theme.colorScheme.onInverseSurface,
@@ -61,13 +62,13 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
           //   begin: Alignment.topLeft,
           //   end: Alignment.bottomRight,
           // ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.5),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withValues(alpha: 0.5),
+          //     blurRadius: 10,
+          //     offset: const Offset(0, 4),
+          //   ),
+          // ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -87,6 +88,9 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                     Text(
                       "Rohan Shrestha",
                       style: widget.theme.textTheme.titleSmall?.copyWith(
+                        // color: widget.theme.brightness != Brightness.light
+                        //     ? Colors.white
+                        //     : Colors.black,
                         color: Colors.white,
                       ),
                     ),
@@ -120,7 +124,10 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                 title: Text(
                   'Total Points',
                   style: widget.theme.textTheme.titleMedium?.copyWith(
-                    color: Colors.white.withValues(alpha: 0.5),
+                    // color: widget.theme.brightness != Brightness.light
+                    //     ? Colors.white.withValues(alpha: 0.5)
+                    //     : Colors.black.withValues(alpha: 0.5),
+                    color: Colors.white,
                   ),
                 ),
                 subtitle: ValueListenableBuilder(
@@ -130,12 +137,18 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                       TextSpan(
                         text: value ? 'XXX ' : "${0} ",
                         style: widget.theme.textTheme.titleLarge?.copyWith(
+                          // color: widget.theme.brightness != Brightness.light
+                          //     ? Colors.white
+                          //     : Colors.black,
                           color: Colors.white,
                         ),
                         children: [
                           TextSpan(
                             text: "points",
                             style: widget.theme.textTheme.bodyLarge?.copyWith(
+                              // color: widget.theme.brightness != Brightness.light
+                              //     ? Colors.white
+                              //     : Colors.black,
                               color: Colors.white,
                             ),
                           ),
@@ -150,6 +163,9 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                     builder: (context, value, child) {
                       return Icon(
                         value ? Icons.visibility : Icons.visibility_off,
+                        // color: widget.theme.brightness != Brightness.light
+                        //     ? Colors.white
+                        //     : Colors.black,
                         color: Colors.white,
                       );
                     },
@@ -160,7 +176,14 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                 ),
               ),
 
-              const Divider(height: 1, color: Colors.white),
+              Divider(
+                height: 1,
+
+                // color: widget.theme.brightness != Brightness.light
+                //     ? Colors.white
+                //     : Colors.black,
+                color: Colors.white,
+              ),
 
               const SizedBox(height: 10),
 
@@ -173,7 +196,10 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                       Text(
                         'Remaining:  ',
                         style: widget.theme.textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.5),
+                          // color: widget.theme.brightness != Brightness.light
+                          //     ? Colors.white.withValues(alpha: 0.5)
+                          //     : Colors.black.withValues(alpha: 0.5),
+                          color: Colors.white,
                         ),
                       ),
                       ValueListenableBuilder(
@@ -182,6 +208,9 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                           return Text(
                             value ? 'xxx' : '${0}',
                             style: widget.theme.textTheme.titleSmall?.copyWith(
+                              // color: widget.theme.brightness != Brightness.light
+                              //     ? Colors.white
+                              //     : Colors.black,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -196,7 +225,10 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                       Text(
                         'Redeemed:  ',
                         style: widget.theme.textTheme.bodyMedium?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.5),
+                          // color: widget.theme.brightness != Brightness.light
+                          //     ? Colors.white.withValues(alpha: 0.5)
+                          //     : Colors.black.withValues(alpha: 0.5),
+                          color: Colors.white,
                         ),
                       ),
                       ValueListenableBuilder(
@@ -206,6 +238,9 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                             value ? 'xxx' : '${0}',
                             style: widget.theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
+                              // color: widget.theme.brightness != Brightness.light
+                              //     ? Colors.white
+                              //     : Colors.black,
                               color: Colors.white,
                             ),
                           );
@@ -236,7 +271,13 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                                   end: -1,
                                 ) // negative for clockwise
                                 .animate(_controller),
-                        child: const Icon(Icons.sync_outlined),
+                        child: Icon(
+                          Icons.sync_outlined,
+                          // color: widget.theme.brightness != Brightness.light
+                          //     ? Colors.white
+                          //     : Colors.black,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

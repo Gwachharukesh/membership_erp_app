@@ -3,7 +3,6 @@ import 'package:membership_erp_app/common/constants/paddng_constants.dart';
 import 'package:membership_erp_app/common/widgets/custom_profile.dart';
 import 'package:membership_erp_app/features/notification/views/notification_view.dart';
 
-import '../../../config/theme/app_theme.dart';
 import '../../../config/theme/view_model/themeNotifier.dart';
 
 class DashboardAppbar extends StatelessWidget {
@@ -33,7 +32,7 @@ class DashboardAppbar extends StatelessWidget {
                   'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*1my73ni*_ga*MTM4ODc2NDAzMS4xNzU1NDk1NTU4*_ga_8JE65Q40S6*czE3NTU2NzUyMTQkbzIkZzEkdDE3NTU2NzUyMjUkajQ5JGwwJGgw',
             ),
           ),
-          title: Text("Kabita Thuyaju", style: theme.textTheme.titleMedium),
+          title: Text("Rohan Shrestha", style: theme.textTheme.titleMedium),
           actions: [
             IconButton(
               icon: const Icon(Icons.notifications),

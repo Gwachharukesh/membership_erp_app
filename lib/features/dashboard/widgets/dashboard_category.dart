@@ -49,7 +49,7 @@ class CategorySection extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 20,
-                      backgroundColor: theme.colorScheme.surfaceTint,
+                      backgroundColor: theme.cardColor,
 
                       child: Icon(
                         item["icon"] as IconData,

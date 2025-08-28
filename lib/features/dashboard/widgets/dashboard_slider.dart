@@ -10,7 +10,7 @@ class BenefitSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, String>> benefits = [
       {
-        "image": "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        "image": "https://picsum.photos/800/600?random=2",
         "title": "Exclusive Discounts",
       },
       {
@@ -22,7 +22,7 @@ class BenefitSlider extends StatelessWidget {
         "title": "This is title",
       },
       {
-        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
+        "image": "https://picsum.photos/800/600?random=3",
         "title": "Priority Support",
       },
     ];
@@ -39,8 +39,10 @@ class BenefitSlider extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(right: 12),
             child: ImageWidget(imageUrl: benefit["image"]!),
-
-
+            //  ClipRRect(
+            //   borderRadius: BorderRadius.circular(12),
+            //   child: Image.network(, fit: BoxFit.cover),
+            // ),
           );
         },
       ),
