@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:mart_erp/auth/views/signin_view.dart';
 import 'package:mart_erp/common/image_pick/utils/image_file_picker_utils.dart';
+import 'package:mart_erp/common/utils/location_utils.dart';
 import 'package:mart_erp/features/add_customer/bloc/add_customer_bloc.dart';
 import 'package:mart_erp/features/add_customer/bloc/add_customer_event.dart';
 import 'package:mart_erp/features/add_customer/bloc/add_customer_state.dart';
@@ -52,20 +54,32 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
       : TextEditingController();
       */
 
-  final TextEditingController _partyController = TextEditingController();
-  final TextEditingController _mobileNoController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _panVatController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _partyController = kDebugMode
+      ? TextEditingController(text: 'RUkesh')
+      : TextEditingController();
+  final TextEditingController _mobileNoController = kDebugMode
+      ? TextEditingController(text: '9860918194')
+      : TextEditingController();
+  final TextEditingController _emailController = kDebugMode
+      ? TextEditingController(text: 'rukesh.gwachha@dynamic.net.np')
+      : TextEditingController();
+  final TextEditingController _panVatController = kDebugMode
+      ? TextEditingController(text: '123456789')
+      : TextEditingController();
+  final TextEditingController _addressController = kDebugMode
+      ? TextEditingController(text: 'address')
+      : TextEditingController();
   final TextEditingController _latitudeController = TextEditingController(
-    text: '0',
+    text: LocationUtils.defaultLatitude.toString(),
   );
   final TextEditingController _longitudeController = TextEditingController(
-    text: '0',
+    text: LocationUtils.defaultLongitude.toString(),
   );
   final TextEditingController _nearestLocationController =
       TextEditingController();
-  final TextEditingController _dobTextController = TextEditingController();
+  final TextEditingController _dobTextController = kDebugMode
+      ? TextEditingController(text: '2026-03-19')
+      : TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -75,12 +89,13 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
 
   Future<void> _getCurrentLocation() async {
     try {
-      // Location is optional - default to 0, 0
-      _latitudeController.text = '0';
-      _longitudeController.text = '0';
-      // TODO: Implement location services if needed
+      final coordinates = await LocationUtils.getLocationCoordinates();
+      _latitudeController.text = coordinates['latitude'].toString();
+      _longitudeController.text = coordinates['longitude'].toString();
     } catch (e) {
       debugPrint('Location error: $e');
+      _latitudeController.text = LocationUtils.defaultLatitude.toString();
+      _longitudeController.text = LocationUtils.defaultLongitude.toString();
     } finally {
       _addCustomerBloc.add(SetAddCustomerReady());
     }
@@ -104,15 +119,9 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
   Future<void> _submitForm() async {
     if (!_formKey.currentState!.validate()) return;
 
-    if (_latitudeController.text == '0') {
-      EasyLoading.showError('Please enable location services');
-      return;
-    }
-
     try {
       EasyLoading.show(status: 'Registering customer...');
 
-      var imageProvider = _addCustomerBloc.state.pickedImages;
       var customer = AddCustomerModel(
         uniqueId: widget.uniqueId,
         name: _partyController.text.trim(),
@@ -125,10 +134,6 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
         location: _nearestLocationController.text.trim(),
         dob: _dobTextController.text,
       );
-
-      if (imageProvider.isNotEmpty) {
-        customer.copyWith(image: imageProvider.last.path);
-      }
 
       var otpRequestData = OtpGenerateModel(
         emailId: customer.emailId ?? '',
@@ -151,7 +156,6 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
               otpGenetateData: otpRequestData,
               onVerificationSuccess: () async {
                 _resetForm();
-                if (!mounted) return;
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Signin()),
@@ -185,8 +189,8 @@ class _AddCustomerScreenState extends State<AddCustomerScreen> {
     _emailController.clear();
     _panVatController.clear();
     _addressController.clear();
-    _latitudeController.text = '0';
-    _longitudeController.text = '0';
+    _latitudeController.text = LocationUtils.defaultLatitude.toString();
+    _longitudeController.text = LocationUtils.defaultLongitude.toString();
     _nearestLocationController.clear();
 
     // Reset image

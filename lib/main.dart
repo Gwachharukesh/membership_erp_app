@@ -4,6 +4,7 @@ import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mart_erp/config/dio/chuker_config/chucker_config.dart';
 import 'package:mart_erp/features/notification/repository/notifiaction_repository.dart';
 import 'package:mart_erp/features/notification/view_model/notification_bloc/notification_bloc.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
               ? []
               : [ChuckerFlutter.navigatorObserver],
           builder: (context, child) {
+            child = EasyLoading.init()(context, child);
             return ValueListenableBuilder<ThemeMode>(
               valueListenable: ThemeNotifier.themeNotifier,
               builder: (context, themeMode, _) {

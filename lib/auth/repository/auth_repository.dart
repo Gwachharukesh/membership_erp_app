@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:mart_erp/common/constants/shared_pref_initialization.dart';
 import 'package:mart_erp/config/dio/dio_client.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,9 @@ import '../enums/user_type_enum.dart';
 import '../models/token_models.dart';
 
 class AuthRepository {
+
+
+
   Future<TokenModel?> signin({
     required String username,
     required String password,
@@ -191,4 +195,46 @@ class AuthRepository {
     }
     return false;
   }
+
+static Future<TokenModel?> getMasterToken(
+      {required String userName,
+      required String passWord,
+     
+      required bool isForMasterToken,  String? dbCode,}) async {
+    var appVersion = await loadAppVersion();
+
+    try {
+      var response = await dioClient.post(
+        'token',
+        options: Options(
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        ),
+        data:dbCode!=null? {
+          'userName': userName,
+          'password': passWord,
+          'grant_type': 'password',
+          'appVer': appVersion,
+         'dbName': dbCode.trim(),
+        }:{
+          'userName': userName,
+          'password': passWord,
+          'grant_type': 'password',
+          'appVer': appVersion,
+          
+        } ,
+      );
+
+      return _handleResponse(response, userName, passWord, isForMasterToken);
+    } on DioException catch (e) {
+      if (e.response != null) {}
+    } catch (e) {
+      EasyLoading.showToast(
+        'An unexpected error occurred: $e',
+        toastPosition: EasyLoadingToastPosition.center,
+      );
+      return null;
+    } 
+    return null;
+  }
+
 }

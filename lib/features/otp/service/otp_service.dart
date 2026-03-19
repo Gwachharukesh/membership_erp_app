@@ -25,11 +25,7 @@ class OtpService {
       var response = await dioClient.post(
         Endpoints.generateOtp,
         data: jsonEncode(otpData.toJson()),
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 
       if (response.data['IsSuccess']) {
@@ -44,8 +40,9 @@ class OtpService {
     }
   }
 
-  static Future<ApiResponseModel> verifyOTP(
-      {required OtpValidationRequestModel requestData,}) async {
+  static Future<ApiResponseModel> verifyOTP({
+    required OtpValidationRequestModel requestData,
+  }) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
       var token = pref.getString(SharedConstant.masterToken);
@@ -56,16 +53,14 @@ class OtpService {
       var response = await dioClient.post(
         Endpoints.verifyOtp,
         data: jsonEncode(requestData.toJson()),
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 
       if (response.data['ResponseMSG'] == 'Valid OTP') {
-        EasyLoading.showSuccess(response.data['ResponseMSG'],
-            duration: const Duration(seconds: 3),);
+        EasyLoading.showSuccess(
+          response.data['ResponseMSG'],
+          duration: const Duration(seconds: 3),
+        );
         return ApiResponseModel.fromJson(response.data);
       } else {
         return ApiResponseModel.failed;
