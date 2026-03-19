@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,22 @@ class _AddCustomerViewState extends State<AddCustomerView> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _getCurrentLocation());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getCurrentLocation();
+      if (kDebugMode) {
+        _populateDemoData();
+      }
+    });
+  }
+
+  void _populateDemoData() {
+    _partyController.text = 'Demo Customer';
+    _mobileNoController.text = '9841234567';
+    _emailController.text = 'rukesh.gwachha@dynamic.net.np';
+    _panVatController.text = '123456789';
+    _addressController.text = 'Demo Address, Kathmandu, Nepal';
+    _nearestLocationController.text = 'Demo Location';
+    _dobTextController.text = '1990-01-01';
   }
 
   Future<void> _getCurrentLocation() async {
