@@ -3,7 +3,7 @@ import 'package:mart_erp/common/constants/paddng_constants.dart';
 import 'package:mart_erp/common/widgets/custom_profile.dart';
 import 'package:mart_erp/features/notification/views/notification_view.dart';
 
-import '../../../config/theme/view_model/themeNotifier.dart';
+import '../../../config/theme/view_model/theme_notifier.dart';
 
 class DashboardAppbar extends StatelessWidget {
   const DashboardAppbar({

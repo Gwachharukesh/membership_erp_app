@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mart_erp/features/home/screen/home_screen.dart';
 import 'package:mart_erp/features/order/views/my_order_view.dart';
 
-import '../views/dashboard_view.dart';
 import '../views/profile_view.dart';
 
 class DashboardContent extends StatelessWidget {
@@ -20,7 +20,7 @@ class DashboardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (selectedIndex) {
       case 0:
-        return DashboardView(theme: theme);
+        return const HomeScreen();
       // case 1:
       //   return VoucherView(voucherTabController: voucherTabController);
       case 1:
@@ -28,7 +28,7 @@ class DashboardContent extends StatelessWidget {
       case 2:
         return ProfileView();
       default:
-        return DashboardView(theme: theme);
+        return const HomeScreen();
     }
   }
 }

@@ -43,18 +43,21 @@ class CustomProfileIcon extends StatelessWidget {
             width: size,
             height: size,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(width: size, height: size, color: Colors.white),
-            ),
+            placeholder: (context, url) {
+              final isDark = theme.brightness == Brightness.dark;
+              return Shimmer.fromColors(
+                baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+                highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+                child: Container(width: size, height: size, color: theme.cardColor),
+              );
+            },
             errorWidget: (context, url, error) => Container(
               width: size,
               height: size,
-              color: Colors.grey[300],
+              color: theme.colorScheme.surfaceContainerHighest,
               child: Icon(
                 Icons.person,
-                color: Colors.grey[700],
+                color: theme.colorScheme.outline,
                 size: size * 0.6,
               ),
             ),

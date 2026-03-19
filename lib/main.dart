@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mart_erp/config/dio/chuker_config/chucker_config.dart';
+import 'package:mart_erp/features/home/bloc/home_bloc.dart';
+import 'package:mart_erp/features/home/repository/home_repository_impl.dart';
 import 'package:mart_erp/features/notification/repository/notifiaction_repository.dart';
 import 'package:mart_erp/features/notification/view_model/notification_bloc/notification_bloc.dart';
 import 'package:mart_erp/features/order/repostitory/order_repository.dart';
@@ -14,7 +16,7 @@ import 'package:mart_erp/features/order/view_model/order_bloc/order_bloc.dart';
 import 'common/constants/shared_pref_initialization.dart';
 import 'config/routes/routes.dart';
 import 'config/theme/app_theme.dart';
-import 'config/theme/view_model/themeNotifier.dart';
+import 'config/theme/view_model/theme_notifier.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -50,6 +52,7 @@ class MyApp extends StatelessWidget {
           create: (context) => NotificationBloc(notificationRepository),
         ),
         BlocProvider(create: (context) => OrderBloc(orderRepository)),
+        BlocProvider(create: (context) => HomeBloc(HomeRepositoryImpl())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
