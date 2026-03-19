@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mart_erp/common/constants/paddng_constants.dart';
 import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
 import 'package:mart_erp/features/dashboard/widgets/points_summary_card.dart';
 
@@ -57,6 +58,40 @@ class DashboardView extends StatelessWidget {
             "Purchase at Mart",
             "+300",
             theme.colorScheme.primary,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // --- Reusable Benefit Card ---
+  Widget _benefitCard(ThemeData theme, IconData icon, String title) {
+    return Container(
+      margin: PaddingConstants.a4,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: theme.colorScheme.primary,
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.primary.withValues(alpha: .2),
+            blurRadius: 6,
+            offset: const Offset(2, 4),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 32, color: Colors.white),
+          const SizedBox(height: 12),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
           ),
         ],
       ),

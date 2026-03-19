@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.membership_erp_app"
+    namespace = "com.example.mart_erp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.membership_erp_app"
+        applicationId = "com.example.mart_erp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

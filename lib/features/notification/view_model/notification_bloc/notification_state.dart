@@ -18,7 +18,6 @@ final class NotificationFetchedSuccessfully extends NotificationState {
 
   @override
   List<Object> get props => [notifications];
-  
 }
 
 final class ErrorFetchingNotification extends NotificationState {

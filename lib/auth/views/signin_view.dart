@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mart_erp/auth/repository/auth_repository.dart';
+import 'package:mart_erp/auth/views/signup_view.dart';
 import 'package:mart_erp/common/constants/paddng_constants.dart';
 import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
-import 'package:mart_erp/features/add_customer/screen/add_customer.dart';
 import 'package:mart_erp/features/dashboard/views/dashboard_navigation_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -106,7 +106,6 @@ class _SigninViewState extends State<SigninView> {
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Welcome message
                 Text(
@@ -360,39 +359,11 @@ class _SigninViewState extends State<SigninView> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              AuthRepository.getMasterToken(
-                                    userName: 'Admin',
-                                    passWord: 'Demo1@#123',
-                                    isForMasterToken: true,
-                                  )
-                                  .then((token) {
-                                    if (token != null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              AddCustomerScreen(
-                                                uniqueId: DateTime.timestamp()
-                                                    .toString(),
-                                              ),
-                                        ),
-                                      );
-                                    }
-                                  })
-                                  .catchError((error) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            error.toString(),
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                  });
+                              // Navigate to Sign Up screen
+                              Navigator.pushNamed(
+                                context,
+                                SignupView.routeName,
+                              );
                             },
                         ),
                       ],

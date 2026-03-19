@@ -81,8 +81,7 @@ class PathProviderUtils {
 
       if (!await directory.exists()) {
         // Fallback to external storage directory
-        directory =
-            await getExternalStorageDirectory() ??
+        directory = await getExternalStorageDirectory() ??
             Directory('/storage/emulated/0/Download');
       }
     } else {
@@ -110,6 +109,20 @@ class PathProviderUtils {
   /// Check if the device is running Android 10 (API 29) or lower
 
   /// Access public storage using MediaStore for Android 10+
+
+  /// Requests the required permissions for accessing external storage
+  static Future<void> _requestStoragePermission() async {
+    if (Platform.isAndroid) {
+      if (await Permission.storage.isDenied) {
+        // Request permission if denied
+        await Permission.storage.request();
+      }
+
+      if (await Permission.storage.isPermanentlyDenied) {
+        openAppSettings();
+      }
+    }
+  }
 
   /// Custom error handler
   static void showException(String e) {

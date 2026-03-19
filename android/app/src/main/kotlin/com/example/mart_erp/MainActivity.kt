@@ -1,4 +1,4 @@
-package com.example.membership_erp_app
+package com.example.mart_erp
 
 import io.flutter.embedding.android.FlutterActivity
 
