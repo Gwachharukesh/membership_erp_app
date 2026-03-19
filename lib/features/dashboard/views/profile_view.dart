@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:membership_erp_app/common/constants/paddng_constants.dart';
-import 'package:membership_erp_app/common/constants/sizzed_box_constants.dart';
+import 'package:mart_erp/common/constants/paddng_constants.dart';
+import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
 
 import '../../../common/constants/border_radius_constants.dart';
 import '../widgets/points_summary_card.dart';

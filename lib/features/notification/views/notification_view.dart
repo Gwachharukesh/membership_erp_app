@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:membership_erp_app/features/notification/view_model/notification_bloc/notification_event.dart';
+import 'package:mart_erp/features/notification/view_model/notification_bloc/notification_event.dart';
 
 import '../view_model/notification_bloc/notification_bloc.dart';
 import '../view_model/notification_bloc/notification_state.dart'

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:membership_erp_app/common/widgets/image_widget.dart';
+import 'package:mart_erp/common/widgets/image_widget.dart';
 
 class BenefitSlider extends StatelessWidget {
   final ThemeData theme;

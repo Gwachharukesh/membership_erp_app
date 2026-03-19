@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:membership_erp_app/auth/models/token_models.dart';
-import 'package:membership_erp_app/auth/view_model/auth_bloc.dart';
-import 'package:membership_erp_app/auth/views/signin_view.dart';
+import 'package:mart_erp/auth/models/token_models.dart';
+import 'package:mart_erp/auth/view_model/auth_bloc.dart';
+import 'package:mart_erp/auth/views/signin_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // import '../../view/landing_screen/weclcome_screen/screen/welcome_screen.dart';

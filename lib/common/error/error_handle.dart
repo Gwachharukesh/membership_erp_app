@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:membership_erp_app/main.dart';
+import 'package:mart_erp/main.dart';
 
 import '../../config/routes/route_not_found_view.dart';
 

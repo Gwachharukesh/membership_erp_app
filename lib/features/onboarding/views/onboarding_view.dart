@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:membership_erp_app/auth/views/signin_view.dart';
-import 'package:membership_erp_app/common/constants/shared_constant.dart';
-import 'package:membership_erp_app/common/constants/sizzed_box_constants.dart';
+import 'package:mart_erp/auth/views/signin_view.dart';
+import 'package:mart_erp/common/constants/shared_constant.dart';
+import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/paddng_constants.dart';

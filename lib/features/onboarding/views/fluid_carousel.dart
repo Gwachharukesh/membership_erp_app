@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:membership_erp_app/config/routes/routes.dart';
+import 'package:mart_erp/config/routes/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/shared_constant.dart' show SharedConstant;

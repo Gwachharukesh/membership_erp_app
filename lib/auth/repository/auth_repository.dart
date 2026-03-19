@@ -3,12 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:membership_erp_app/config/dio/dio_client.dart';
+import 'package:mart_erp/config/dio/dio_client.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/constants/shared_constant.dart';
-import '../../common/constants/shared_pref_initialization.dart';
 import '../enums/user_type_enum.dart';
 import '../models/token_models.dart';
 
@@ -129,23 +128,6 @@ class AuthRepository {
     } catch (e, stackTrace) {
       debugPrint("Error saving secure data: $e\n$stackTrace");
     }
-  }
-
-  static Future<void> _removeSecureData() async {
-    await SharedPreferencesService().remove(SharedConstant.accessToken);
-    await SharedPreferencesService().remove(SharedConstant.refreshToken);
-    await SharedPreferencesService().remove(SharedConstant.userType);
-    await SharedPreferencesService().remove(SharedConstant.userId);
-    await SharedPreferencesService().remove(SharedConstant.loginPassword);
-    await SharedPreferencesService().remove(SharedConstant.userName);
-    await SharedPreferencesService().remove(SharedConstant.userTypeId);
-    await SharedPreferencesService().remove(SharedConstant.customerCode);
-    await SharedPreferencesService().remove(SharedConstant.expiredIn);
-  }
-
-  Future<void> _clearUserDataOnLogout() async {
-    await _removeSecureData();
-    // Clear any other user-related data if needed
   }
 
   Future<TokenModel> refreshAccessToken(

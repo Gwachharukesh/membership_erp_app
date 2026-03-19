@@ -1,6 +1,6 @@
 {
-    "name": "membership_erp_app",
-    "short_name": "membership_erp_app",
+    "name": "mart_erp",
+    "short_name": "mart_erp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

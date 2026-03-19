@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:membership_erp_app/features/order/models/order_model.dart';
+import 'package:mart_erp/features/order/models/order_model.dart';
 
 abstract class OrderRepository {
   Either<String, List<OrderModel>> getOrder();

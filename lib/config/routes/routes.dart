@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:membership_erp_app/features/dashboard/views/dashboard_navigation_handler.dart';
-import 'package:membership_erp_app/features/onboarding/views/homepage.dart';
+import 'package:mart_erp/features/dashboard/views/dashboard_navigation_handler.dart';
+import 'package:mart_erp/features/onboarding/views/homepage.dart';
 
 import '../../app_init/views/app_init_view.dart';
 import '../../auth/views/signin_view.dart';

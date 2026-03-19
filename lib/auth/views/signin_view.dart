@@ -2,11 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:membership_erp_app/auth/repository/auth_repository.dart';
-import 'package:membership_erp_app/auth/views/signup_view.dart';
-import 'package:membership_erp_app/common/constants/paddng_constants.dart';
-import 'package:membership_erp_app/common/constants/sizzed_box_constants.dart';
-import 'package:membership_erp_app/features/dashboard/views/dashboard_navigation_handler.dart';
+import 'package:mart_erp/auth/repository/auth_repository.dart';
+import 'package:mart_erp/auth/views/signup_view.dart';
+import 'package:mart_erp/common/constants/paddng_constants.dart';
+import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
+import 'package:mart_erp/features/dashboard/views/dashboard_navigation_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/constants/shared_constant.dart';
@@ -106,6 +106,7 @@ class _SigninViewState extends State<SigninView> {
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Welcome message
                 Text(

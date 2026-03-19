@@ -4,18 +4,34 @@ import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:membership_erp_app/config/dio/chuker_config/chucker_config.dart';
-import 'package:membership_erp_app/features/notification/repository/notifiaction_repository.dart';
-import 'package:membership_erp_app/features/notification/view_model/notification_bloc/notification_bloc.dart';
-import 'package:membership_erp_app/features/order/repostitory/order_repository.dart';
-import 'package:membership_erp_app/features/order/view_model/order_bloc/order_bloc.dart';
+import 'package:mart_erp/config/dio/chuker_config/chucker_config.dart';
+import 'package:mart_erp/features/notification/repository/notifiaction_repository.dart';
+import 'package:mart_erp/features/notification/view_model/notification_bloc/notification_bloc.dart';
+import 'package:mart_erp/features/order/repostitory/order_repository.dart';
+import 'package:mart_erp/features/order/view_model/order_bloc/order_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 import 'common/constants/shared_pref_initialization.dart';
 import 'config/routes/routes.dart';
 import 'config/theme/app_theme.dart';
-import 'config/theme/view_model/themeNotifier.dart';
+import 'config/theme/view_model/theme_notifier.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+// Sizer Responsive Widget
+class ResponsiveApp extends StatelessWidget {
+  final Widget child;
+  const ResponsiveApp({required this.child, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return child;
+      },
+    );
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,30 +66,32 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => OrderBloc(orderRepository)),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Membership App',
-        theme: AppThemes.lightTheme,
-        darkTheme: AppThemes.darkTheme,
-        initialRoute: '/',
-        onGenerateRoute: RouteHelper.generateRoute,
-        navigatorObservers: kReleaseMode
-            ? []
-            : [ChuckerFlutter.navigatorObserver],
-        builder: (context, child) {
-          return ValueListenableBuilder<ThemeMode>(
-            valueListenable: ThemeNotifier.themeNotifier,
-            builder: (context, themeMode, _) {
-              return AnimatedTheme(
-                data: themeMode == ThemeMode.dark
-                    ? AppThemes.darkTheme
-                    : AppThemes.lightTheme,
-                duration: const Duration(milliseconds: 0),
-                child: child!,
-              );
-            },
-          );
-        },
+      child: ResponsiveApp(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Membership App',
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          initialRoute: '/',
+          onGenerateRoute: RouteHelper.generateRoute,
+          navigatorObservers: kReleaseMode
+              ? []
+              : [ChuckerFlutter.navigatorObserver],
+          builder: (context, child) {
+            return ValueListenableBuilder<ThemeMode>(
+              valueListenable: ThemeNotifier.themeNotifier,
+              builder: (context, themeMode, _) {
+                return AnimatedTheme(
+                  data: themeMode == ThemeMode.dark
+                      ? AppThemes.darkTheme
+                      : AppThemes.lightTheme,
+                  duration: const Duration(milliseconds: 0),
+                  child: child!,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:membership_erp_app/app_init/view_model/app_init_event.dart';
-import 'package:membership_erp_app/auth/enums/user_type_enum.dart';
-import 'package:membership_erp_app/common/constants/shared_pref_initialization.dart';
-import 'package:membership_erp_app/features/onboarding/views/homepage.dart';
-import 'package:membership_erp_app/features/onboarding/views/onboarding_view.dart';
+import 'package:mart_erp/app_init/view_model/app_init_event.dart';
+import 'package:mart_erp/auth/enums/user_type_enum.dart';
+import 'package:mart_erp/common/constants/shared_pref_initialization.dart';
+import 'package:mart_erp/features/onboarding/views/homepage.dart';
 
 import '../../auth/views/signin_view.dart';
 import '../view_model/app_init_bloc.dart';

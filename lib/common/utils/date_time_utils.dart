@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:intl/intl.dart';
-import 'package:membership_erp_app/common/extension/extensions.dart';
+import 'package:mart_erp/common/extension/extensions.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 
 class DateTimeUtils {

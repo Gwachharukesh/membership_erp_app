@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:membership_erp_app/common/constants/shared_constant.dart';
-import 'package:membership_erp_app/common/constants/shared_pref_initialization.dart';
+import 'package:mart_erp/common/constants/shared_constant.dart';
+import 'package:mart_erp/common/constants/shared_pref_initialization.dart';
 
 import '../../auth/enums/user_type_enum.dart';
 import '../../common/utils/date_time_utils.dart';

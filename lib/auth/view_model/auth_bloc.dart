@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:membership_erp_app/auth/enums/user_type_enum.dart';
-import 'package:membership_erp_app/auth/repository/auth_repository.dart';
+import 'package:mart_erp/auth/enums/user_type_enum.dart';
+import 'package:mart_erp/auth/repository/auth_repository.dart';
 
 import '../../common/constants/shared_constant.dart';
 import '../../common/constants/shared_pref_initialization.dart';

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:membership_erp_app/auth/enums/user_type_enum.dart';
+import 'package:mart_erp/auth/enums/user_type_enum.dart';
 
 enum AppInitStatus {
   initial,
