@@ -9,7 +9,7 @@ class Endpoints {
   static const _socketUrlAtf = 'ws://139.5.73.19:7792/GPS';
   static const _localhost = 'ws://10.0.2.2:7792/GPS';
 
-  static String baseUrl = 'https://mkt.dynamicerp.online';
+  static String baseUrl = 'https://demo1.dynamicerp.online';
 
   static const imageUrl = 'https://crm.dynamicerp.online/';
 

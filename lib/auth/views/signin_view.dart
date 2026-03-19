@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:mart_erp/auth/models/token_models.dart';
 import 'package:mart_erp/auth/repository/auth_repository.dart';
-import 'package:mart_erp/auth/views/signup_view.dart';
 import 'package:mart_erp/common/constants/paddng_constants.dart';
 import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
+import 'package:mart_erp/features/customer/screen/add_customer.dart';
 import 'package:mart_erp/features/dashboard/views/dashboard_navigation_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,6 +62,15 @@ class _SigninViewState extends State<SigninView> {
     passwordVisibleNotifier.dispose();
     checkboxValuePermission.dispose();
     super.dispose();
+  }
+
+  Future<TokenModel?> getAdminToken() async {
+    return await AuthRepository().signin(
+      //  userName: 'admin', passWord: 'Nepal@123', isForMasterToken: true,dbCode: dbcode);
+      username: 'admin',
+      password: 'Demo1@#123',
+      isForMasterToken: true,
+    );
   }
 
   @override
@@ -358,11 +369,24 @@ class _SigninViewState extends State<SigninView> {
                             fontWeight: FontWeight.bold,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              // Navigate to Sign Up screen
-                              Navigator.pushNamed(
+                            ..onTap = () async {
+                              var uniqueId = DateTime.now()
+                                  .millisecondsSinceEpoch
+                                  .toString();
+                              Future.delayed(const Duration(seconds: 1));
+                              var token = await getAdminToken();
+                              if (token == null) {
+                                EasyLoading.showError(
+                                  'Please Contact Admin\n Registration Currently Closed',
+                                );
+                                return;
+                              }
+                              Navigator.push(
                                 context,
-                                SignupView.routeName,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AddCustomerScreen(uniqueId: uniqueId),
+                                ),
                               );
                             },
                         ),
