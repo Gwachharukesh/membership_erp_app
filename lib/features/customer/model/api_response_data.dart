@@ -5,6 +5,7 @@ class ApiResponseData {
     this.rId,
     this.isNetworkError,
     this.isduplicate,
+    this.userData,
   });
 
   String? responseMSG;
@@ -12,4 +13,5 @@ class ApiResponseData {
   int? rId;
   bool? isNetworkError;
   bool? isduplicate;
+  dynamic userData;
 }

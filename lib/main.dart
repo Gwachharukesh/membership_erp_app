@@ -24,7 +24,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     ChuckerFlutter.showOnRelease = await ChuckerEnabler.isEnabled();
-    log('ChuckerFlutter.showOnRelease set');
+    // Always show Chucker in debug mode
+    if (!kReleaseMode) {
+      ChuckerFlutter.showOnRelease = true;
+    }
+    log('ChuckerFlutter.showOnRelease set to: ${ChuckerFlutter.showOnRelease}');
   } catch (e) {
     log('Error setting ChuckerFlutter.showOnRelease: $e');
   }
@@ -61,9 +65,9 @@ class MyApp extends StatelessWidget {
         darkTheme: AppThemes.darkTheme,
         initialRoute: '/',
         onGenerateRoute: RouteHelper.generateRoute,
-        navigatorObservers: kReleaseMode
-            ? []
-            : [ChuckerFlutter.navigatorObserver],
+        navigatorObservers: ChuckerFlutter.showOnRelease
+            ? [ChuckerFlutter.navigatorObserver]
+            : [],
         builder: EasyLoading.init(
           builder: (context, child) {
             return ValueListenableBuilder<ThemeMode>(

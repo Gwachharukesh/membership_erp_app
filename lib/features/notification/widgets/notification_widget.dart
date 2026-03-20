@@ -42,14 +42,17 @@ class NotificationWidget extends StatelessWidget {
               children: [
                 Text(
                   notification.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodyLarge?.copyWith(
-                    // color: theme.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBoxConstants.h2,
                 Text(
                   notification.description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodyMedium,
                 ),
                 SizedBoxConstants.h2,

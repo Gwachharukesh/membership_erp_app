@@ -7,6 +7,10 @@ import '../../auth/views/signin_view.dart';
 import '../../auth/views/signup_view.dart';
 import '../../features/notification/views/notification_view.dart';
 import '../../features/onboarding/views/onboarding_view.dart';
+import '../../features/catalog/screen/category_screen.dart';
+import '../../features/rewards/screen/leaderboard_screen.dart';
+import '../../features/rewards/screen/rewards_hub_screen.dart';
+import '../../features/rewards/screen/tier_status_screen.dart';
 import 'route_not_found_view.dart';
 
 class RouteHelper {
@@ -19,6 +23,10 @@ class RouteHelper {
   static const String dashboardView = DashboardNavigationHandler.routeName;
   static const String routeNotFoundView = RouteNotFoundView.routeName;
   static const String notificationView = NotificationView.routeName;
+  static const String categories = CategoryScreen.routeName;
+  static const String rewardsHub = RewardsHubScreen.routeName;
+  static const String leaderboard = LeaderboardScreen.routeName;
+  static const String tierStatus = TierStatusScreen.routeName;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -38,6 +46,14 @@ class RouteHelper {
         return _slideTransition(DashboardNavigationHandler());
       case notificationView:
         return _slideTransition(NotificationView());
+      case categories:
+        return _slideTransition(const CategoryScreen());
+      case rewardsHub:
+        return _slideTransition(const RewardsHubScreen());
+      case leaderboard:
+        return _slideTransition(const LeaderboardScreen());
+      case tierStatus:
+        return _slideTransition(const TierStatusScreen());
       default:
         return _slideTransition(const RouteNotFoundView());
     }

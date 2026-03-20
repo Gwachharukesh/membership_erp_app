@@ -53,7 +53,6 @@ class ProfileView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    spacing: 20,
                     children: [
                       Container(
                         padding: PaddingConstants.a4,
@@ -67,12 +66,16 @@ class ProfileView extends StatelessWidget {
                         ),
                         child: const Icon(Icons.history),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item["activity"]!),
-                          Text(item["date"]!),
-                        ],
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(item["activity"]!, overflow: TextOverflow.ellipsis, maxLines: 1),
+                            Text(item["date"]!, style: theme.textTheme.bodySmall),
+                          ],
+                        ),
                       ),
                     ],
                   ),

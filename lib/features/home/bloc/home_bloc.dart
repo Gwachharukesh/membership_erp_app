@@ -15,14 +15,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(const HomeLoading());
     try {
       final data = await _repository.loadHomeData();
-      emit(HomeLoadedState(
-        banners: data.banners,
-        categories: data.categories,
-        topProducts: data.topProducts,
-        flashDeals: data.flashDeals,
-        newArrivals: data.newArrivals,
-        recommended: data.recommended,
-      ));
+      emit(
+        HomeLoadedState(
+          banners: data.banners,
+          categories: data.categories,
+          topProducts: data.topProducts,
+          flashDeals: data.flashDeals,
+          newArrivals: data.newArrivals,
+          recommended: data.recommended,
+          dashboardSummary: data.dashboardSummary,
+        ),
+      );
     } catch (e, _) {
       emit(HomeErrorState(e.toString()));
     }

@@ -54,7 +54,16 @@ class AddCustomerService {
 
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var token = pref.getString(SharedConstant.masterToken);
+      var token = pref.getString(SharedConstant.masterToken) ?? 
+                  pref.getString(SharedConstant.accessToken);
+
+      if (token == null || token.isEmpty) {
+        return ApiResponseData(
+          responseMSG: 'Authentication token not found. Please login again.',
+          isSuccess: false,
+          isNetworkError: false,
+        );
+      }
 
       var response = await dioClient.put(
         '/Customer/Register',

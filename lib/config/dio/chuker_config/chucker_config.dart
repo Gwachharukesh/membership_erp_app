@@ -43,4 +43,14 @@ class ChuckerEnabler {
   static restart() async {
     await Restart.restartApp();
   }
+
+  /// Manually open Chucker UI
+  static void openChucker() {
+    try {
+      // ChuckerFlutter.showNotification();
+      log('Chucker inspector opened');
+    } catch (e) {
+      log('Error opening Chucker: $e');
+    }
+  }
 }

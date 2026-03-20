@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mart_erp/common/constants/paddng_constants.dart';
-import 'package:mart_erp/common/widgets/custom_profile.dart';
 import 'package:mart_erp/features/notification/views/notification_view.dart';
 
 import '../../../config/theme/view_model/theme_notifier.dart';
@@ -18,24 +16,24 @@ class DashboardAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (_selectedIndex) {
-      case 0: // Dashboard
+      case 0: // Dashboard / Home
         return AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: PaddingConstants.a8,
-            child: CustomProfileIcon(
-              size: 60,
-              theme: theme,
-              photoPath:
-                  'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*1my73ni*_ga*MTM4ODc2NDAzMS4xNzU1NDk1NTU4*_ga_8JE65Q40S6*czE3NTU2NzUyMTQkbzIkZzEkdDE3NTU2NzUyMjUkajQ5JGwwJGgw',
+          leading: IconButton(
+            icon: const Icon(Icons.menu_rounded),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+          title: Text(
+            "Mart ERP",
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: theme.colorScheme.primary,
             ),
           ),
-          title: Text("Rohan Shrestha", style: theme.textTheme.titleMedium),
           actions: [
             IconButton(
-              icon: const Icon(Icons.notifications),
+              icon: Badge(child: const Icon(Icons.notifications_outlined)),
               onPressed: () {
                 Navigator.pushNamed(context, NotificationView.routeName);
               },

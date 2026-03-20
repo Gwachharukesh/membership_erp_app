@@ -1,0 +1,26 @@
+---
+description: E-commerce UI standards - avoid render flex, professional layout
+globs: lib/**/*.dart
+alwaysApply: false
+---
+
+# E-commerce UI Rules
+
+## Avoid Render Flex Overflow
+
+1. **Row children**: Wrap flexible content (Text, dynamic widgets) in `Expanded` or `Flexible`
+2. **Text**: Always set `maxLines` and `overflow: TextOverflow.ellipsis` when in constrained space
+3. **LayoutBuilder**: Use for components that must adapt (e.g. SmartProductCard in grid vs list)
+4. **ListView in Column**: Use `shrinkWrap: true` + `physics: NeverScrollableScrollPhysics` or wrap in `SizedBox(height: x)`
+5. **Row spacing**: If Flutter < 3.27, use `SizedBox(width: x)` between children instead of `spacing: x`
+
+## Layout Patterns
+
+- Product cards in grid: Use parent's constraints (LayoutBuilder)
+- Bottom bars: `Flexible` for price, `Expanded` for button
+- Profile/lists: `Expanded` for text that can shrink
+
+## Theme
+
+- Use `Theme.of(context)` and `AppColors.of(context)` — no raw `Colors.white` on light cards
+- Card text: `theme.colorScheme.onSurface`

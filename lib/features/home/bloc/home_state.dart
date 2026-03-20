@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:mart_erp/features/dashboard-summary/model/mart_dashboard_model.dart';
 
 import '../model/home_models.dart';
 
@@ -25,6 +26,7 @@ class HomeLoadedState extends HomeState {
     required this.flashDeals,
     required this.newArrivals,
     required this.recommended,
+    this.dashboardSummary,
   });
 
   final List<HomeBanner> banners;
@@ -33,9 +35,18 @@ class HomeLoadedState extends HomeState {
   final List<HomeProduct> flashDeals;
   final List<HomeProduct> newArrivals;
   final List<HomeProduct> recommended;
+  final DashboardSummaryModel? dashboardSummary;
 
   @override
-  List<Object?> get props => [banners, categories, topProducts, flashDeals, newArrivals, recommended];
+  List<Object?> get props => [
+    banners,
+    categories,
+    topProducts,
+    flashDeals,
+    newArrivals,
+    recommended,
+    dashboardSummary,
+  ];
 }
 
 class HomeErrorState extends HomeState {

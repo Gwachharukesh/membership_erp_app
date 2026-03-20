@@ -125,18 +125,18 @@ packages:
     dependency: transitive
     description:
       name: chopper
-      sha256: "35cde96292178809ca4290f42dbb83d832551333c2b18a2226a2538103ab40d3"
+      sha256: "55ca15ed4428cec4e6f20549782b8a64f9ea9cc494e6ae84b5c08760463c13b6"
       url: "https://pub.dev"
     source: hosted
-    version: "8.3.0"
+    version: "8.5.0"
   chucker_flutter:
     dependency: "direct main"
     description:
       name: chucker_flutter
-      sha256: cb5b686c98b8681c6fe8d1ea7b42a720078995cff03ddc2aced5cdfae8372eb4
+      sha256: "43d0a8a2fc1439cca7cde9df6e22c2ce3c9d5d20e1ee2b3677676b180b0642bc"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.5"
+    version: "1.9.1"
   clock:
     dependency: transitive
     description:
@@ -489,10 +489,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: bb2ce4590bc2667c96f318d68cac1b5a7987ec819351d32b1c987239a815e007
+      sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "1.6.0"
   http_parser:
     dependency: transitive
     description:
@@ -857,10 +857,10 @@ packages:
     dependency: transitive
     description:
       name: qs_dart
-      sha256: ffeb30c6a0999a9b62ab372d4780437339d75036e6eedb9685727cca70d72bca
+      sha256: "92ac0f9e5cebdf9c44b4eeea3cc6014e74f1fe8b7f7610b427c9377369b2e23e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.4"
+    version: "1.7.3"
   restart_app:
     dependency: "direct main"
     description:
@@ -881,10 +881,10 @@ packages:
     dependency: transitive
     description:
       name: share_plus
-      sha256: d7dc0630a923883c6328ca31b89aa682bacbf2f8304162d29f7c6aaff03a27a1
+      sha256: "14c8860d4de93d3a7e53af51bff479598c4e999605290756bbbe45cf65b37840"
       url: "https://pub.dev"
     source: hosted
-    version: "11.1.0"
+    version: "12.0.1"
   share_plus_platform_interface:
     dependency: transitive
     description:
@@ -1186,14 +1186,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.0.0"
-  weak_map:
-    dependency: transitive
-    description:
-      name: weak_map
-      sha256: "5f8e5d5ce57dc624db5fae814dd689ccae1f17f92b426e52f0a7cbe7f6f4ab97"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.1"
   web:
     dependency: transitive
     description:

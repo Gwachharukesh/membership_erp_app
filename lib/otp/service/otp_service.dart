@@ -18,18 +18,18 @@ class OtpService {
   }) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var token = pref.getString(SharedConstant.masterToken);
+      var token =
+          pref.getString(SharedConstant.masterToken) ??
+          pref.getString(
+            SharedConstant.accessToken,
+          ); // Fallback to accessToken if masterToken not set
 
       log(otpData.toJson().toString());
 
       var response = await dioClient.post(
         Endpoints.generateOtp,
         data: jsonEncode(otpData.toJson()),
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 
       if (response.data['IsSuccess']) {
@@ -44,11 +44,16 @@ class OtpService {
     }
   }
 
-  static Future<ApiResponseModel> verifyOTP(
-      {required OtpValidationRequestModel requestData,}) async {
+  static Future<ApiResponseModel> verifyOTP({
+    required OtpValidationRequestModel requestData,
+  }) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var token = pref.getString(SharedConstant.masterToken);
+      var token =
+          pref.getString(SharedConstant.masterToken) ??
+          pref.getString(
+            SharedConstant.accessToken,
+          ); // Fallback to accessToken if masterToken not set
       log('###############################');
       log('Genetated request data for otp');
       log(requestData.toJson().toString());
@@ -56,18 +61,20 @@ class OtpService {
       var response = await dioClient.post(
         Endpoints.verifyOtp,
         data: jsonEncode(requestData.toJson()),
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 
       if (response.data['ResponseMSG'] == 'Valid OTP') {
-        EasyLoading.showSuccess(response.data['ResponseMSG'],
-            duration: const Duration(seconds: 3),);
+        EasyLoading.showSuccess(
+          response.data['ResponseMSG'],
+          duration: const Duration(seconds: 5),
+        );
         return ApiResponseModel.fromJson(response.data);
       } else {
+        EasyLoading.showSuccess(
+          response.data['ResponseMSG'],
+          duration: const Duration(seconds: 5),
+        );
         return ApiResponseModel.failed;
       }
     } on DioException catch (err) {

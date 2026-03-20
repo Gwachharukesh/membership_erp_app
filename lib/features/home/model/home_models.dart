@@ -27,6 +27,7 @@ class HomeCategory extends Equatable {
 
   final String id;
   final String name;
+
   /// Material Icons codePoint for Icon(IconData(codePoint, fontFamily: 'MaterialIcons'))
   final int iconCodePoint;
   final String? imageUrl;
@@ -46,6 +47,7 @@ class HomeProduct extends Equatable {
     this.isFlashDeal = false,
     this.discountPercent,
     this.pointsEarn = 0,
+    this.isWishlisted = false,
   });
 
   final String id;
@@ -57,6 +59,7 @@ class HomeProduct extends Equatable {
   final bool isFlashDeal;
   final int? discountPercent;
   final int pointsEarn;
+  final bool isWishlisted;
 
   @override
   List<Object?> get props => [id, name, price];

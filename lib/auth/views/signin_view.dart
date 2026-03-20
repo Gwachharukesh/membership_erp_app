@@ -327,6 +327,16 @@ class _SigninViewState extends State<SigninView> {
                     builder: (context, state) {
                       return ElevatedButton(
                         onPressed: () {
+                          // if (kDebugMode) {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           const DashboardNavigationHandler(),
+                          //     ),
+                          //   );
+                          // }
+
                           if (_formKey.currentState?.validate() ?? false) {
                             context.read<AuthBloc>().add(SigninUser());
                           }

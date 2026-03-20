@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mart_erp/common/constants/paddng_constants.dart';
 import 'package:mart_erp/common/constants/sizzed_box_constants.dart';
 import 'package:mart_erp/features/dashboard/widgets/points_summary_card.dart';
 
@@ -42,18 +41,21 @@ class DashboardView extends StatelessWidget {
           ),
           SizedBoxConstants.h10,
           _pointsHistoryTile(
+            context,
             "2025-08-01",
             "Purchase at Mart",
             "+200",
             theme.colorScheme.primary,
           ),
           _pointsHistoryTile(
+            context,
             "2025-08-05",
             "Redeemed Voucher",
             "-100",
             theme.colorScheme.error,
           ),
           _pointsHistoryTile(
+            context,
             "2025-08-10",
             "Purchase at Mart",
             "+300",
@@ -64,53 +66,30 @@ class DashboardView extends StatelessWidget {
     );
   }
 
-  // --- Reusable Benefit Card ---
-  Widget _benefitCard(ThemeData theme, IconData icon, String title) {
-    return Container(
-      margin: PaddingConstants.a4,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: theme.colorScheme.primary,
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary.withValues(alpha: .2),
-            blurRadius: 6,
-            offset: const Offset(2, 4),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 32, color: Colors.white),
-          const SizedBox(height: 12),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   // --- Reusable Points History Tile ---
   Widget _pointsHistoryTile(
+    BuildContext context,
     String date,
     String activity,
     String points,
     Color color,
   ) {
     return ListTile(
-      leading: const Icon(Icons.history),
-      title: Text(activity),
-      subtitle: Text(date),
+      leading: const Icon(Icons.history_rounded),
+      title: Text(
+        activity,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        date,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
       trailing: Text(
         points,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: color,
           fontWeight: FontWeight.bold,

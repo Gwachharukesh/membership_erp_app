@@ -52,7 +52,7 @@ dependencies:
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
   package_info_plus: ^8.3.1
-  chucker_flutter: ^1.8.5
+  chucker_flutter: ^1.9.1
   flutter_screenutil: ^5.9.3
   bot_toast: ^4.1.3
   restart_app: ^1.3.2

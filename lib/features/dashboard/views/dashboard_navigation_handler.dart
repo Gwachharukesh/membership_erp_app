@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/dashboard_appbar.dart';
 import '../widgets/dashboard_bottom_navigation_bar_widget.dart';
 import '../widgets/dashboard_content.dart';
+import '../widgets/dashboard_drawer.dart';
 
 class DashboardNavigationHandler extends StatefulWidget {
   static const routeName = '/DashboardNavigationHandler';
@@ -37,6 +38,10 @@ class _DashboardNavigationHandlerState extends State<DashboardNavigationHandler>
     final theme = Theme.of(context);
 
     return Scaffold(
+      drawer: DashboardDrawer(
+        theme: theme,
+        onNavigate: (index) => _selectedIndex.value = index,
+      ),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: ValueListenableBuilder(

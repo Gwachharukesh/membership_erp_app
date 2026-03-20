@@ -76,7 +76,6 @@ class NetworkErrorWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          spacing: 10,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
@@ -84,10 +83,13 @@ class NetworkErrorWidget extends StatelessWidget {
               color: Theme.of(context).colorScheme.error,
               size: 50,
             ),
+            const SizedBox(height: 10),
             Text(
               'Network Connection Error/ इन्टरनेट समस्या',
               style: Theme.of(context).textTheme.titleSmall,
+              textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 10),
             Text(
               "Internet slow /इन्टरनेट जडान नभएकोले कारण तपाईको डाटा offline मा save भएको छ। Checkout गर्नु अघि data sync गर्नुहोला ।",
               textAlign: TextAlign.center,

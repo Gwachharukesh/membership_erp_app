@@ -16,13 +16,23 @@ var myname = 'rukesh';
 // )..interceptors.add(AuthorizationInterceptor());
 
 // Dio dioClient = Dio();
-Dio dioClient = Dio(
-  BaseOptions(
-    baseUrl: '${Endpoints.baseUrl}/${Endpoints.version}',
-    connectTimeout: const Duration(milliseconds: Endpoints.connectionTimeout),
-    receiveTimeout: const Duration(milliseconds: Endpoints.receiveTimeout),
-  ),
-)..interceptors.add(ChuckerDioInterceptor());
+Dio dioClient =
+    Dio(
+        BaseOptions(
+          baseUrl: '${Endpoints.baseUrl}/${Endpoints.version}',
+          connectTimeout: const Duration(
+            milliseconds: Endpoints.connectionTimeout,
+          ),
+          receiveTimeout: const Duration(
+            milliseconds: Endpoints.receiveTimeout,
+          ),
+        ),
+      )
+      ..interceptors.addAll([
+        CustomRetryInterceptor(Dio()),
+        ChuckerDioInterceptor(),
+        AuthorizationInterceptor(),
+      ]);
 
 final Dio dioClientWithoutVersion =
     Dio(

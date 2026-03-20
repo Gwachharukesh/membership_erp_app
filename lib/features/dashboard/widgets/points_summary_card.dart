@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/custom_profile.dart';
+import '../../../config/routes/routes.dart';
 
 class PointsSummaryCard extends StatefulWidget {
   const PointsSummaryCard({
@@ -40,35 +41,27 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
-
-      // => Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => const PointsDetailsScreen(),
-      //   ),
-      // ),
+      onTap: () => Navigator.pushNamed(context, RouteHelper.rewardsHub),
       child: Container(
         // margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          // color: widget.theme.primaryColor,
-          color: widget.theme.cardColor,
-          // gradient: LinearGradient(
-          //   colors: [
-          //     widget.theme.colorScheme.onInverseSurface,
-          //     widget.theme.secondaryHeaderColor,
-          //   ],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          // ),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.black.withValues(alpha: 0.5),
-          //     blurRadius: 10,
-          //     offset: const Offset(0, 4),
-          //   ),
-          // ],
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            colors: [
+              widget.theme.colorScheme.primaryContainer.withValues(alpha: 0.4),
+              widget.theme.colorScheme.surface,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: widget.theme.colorScheme.shadow.withValues(alpha: 0.06),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+              spreadRadius: 0,
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -77,7 +70,6 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
               // Card header with customer name and points label
               if (widget.includeHeading) ...[
                 Row(
-                  spacing: 10,
                   children: [
                     CustomProfileIcon(
                       size: 40,
@@ -85,13 +77,15 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                       photoPath:
                           'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?_gl=1*1my73ni*_ga*MTM4ODc2NDAzMS4xNzU1NDk1NTU4*_ga_8JE65Q40S6*czE3NTU2NzUyMTQkbzIkZzEkdDE3NTU2NzUyMjUkajQ5JGwwJGgw',
                     ),
-                    Text(
-                      "Rohan Shrestha",
-                      style: widget.theme.textTheme.titleSmall?.copyWith(
-                        // color: widget.theme.brightness != Brightness.light
-                        //     ? Colors.white
-                        //     : Colors.black,
-                        color: Colors.white,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        "Rohan Shrestha",
+                        style: widget.theme.textTheme.titleSmall?.copyWith(
+                          color: widget.theme.colorScheme.onSurface,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
@@ -127,7 +121,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                     // color: widget.theme.brightness != Brightness.light
                     //     ? Colors.white.withValues(alpha: 0.5)
                     //     : Colors.black.withValues(alpha: 0.5),
-                    color: Colors.white,
+                    color: widget.theme.colorScheme.onSurface,
                   ),
                 ),
                 subtitle: ValueListenableBuilder(
@@ -140,7 +134,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                           // color: widget.theme.brightness != Brightness.light
                           //     ? Colors.white
                           //     : Colors.black,
-                          color: Colors.white,
+                          color: widget.theme.colorScheme.onSurface,
                         ),
                         children: [
                           TextSpan(
@@ -149,7 +143,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                               // color: widget.theme.brightness != Brightness.light
                               //     ? Colors.white
                               //     : Colors.black,
-                              color: Colors.white,
+                              color: widget.theme.colorScheme.onSurface,
                             ),
                           ),
                         ],
@@ -166,7 +160,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                         // color: widget.theme.brightness != Brightness.light
                         //     ? Colors.white
                         //     : Colors.black,
-                        color: Colors.white,
+                        color: widget.theme.colorScheme.onSurface,
                       );
                     },
                   ),
@@ -178,11 +172,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
 
               Divider(
                 height: 1,
-
-                // color: widget.theme.brightness != Brightness.light
-                //     ? Colors.white
-                //     : Colors.black,
-                color: Colors.white,
+                color: widget.theme.dividerColor,
               ),
 
               const SizedBox(height: 10),
@@ -190,16 +180,18 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
                       Text(
                         'Remaining:  ',
                         style: widget.theme.textTheme.bodyMedium?.copyWith(
                           // color: widget.theme.brightness != Brightness.light
                           //     ? Colors.white.withValues(alpha: 0.5)
                           //     : Colors.black.withValues(alpha: 0.5),
-                          color: Colors.white,
+                          color: widget.theme.colorScheme.onSurface,
                         ),
                       ),
                       ValueListenableBuilder(
@@ -211,7 +203,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                               // color: widget.theme.brightness != Brightness.light
                               //     ? Colors.white
                               //     : Colors.black,
-                              color: Colors.white,
+                              color: widget.theme.colorScheme.onSurface,
                               fontWeight: FontWeight.bold,
                             ),
                           );
@@ -219,16 +211,19 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                  ),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
                       Text(
                         'Redeemed:  ',
                         style: widget.theme.textTheme.bodyMedium?.copyWith(
                           // color: widget.theme.brightness != Brightness.light
                           //     ? Colors.white.withValues(alpha: 0.5)
                           //     : Colors.black.withValues(alpha: 0.5),
-                          color: Colors.white,
+                          color: widget.theme.colorScheme.onSurface,
                         ),
                       ),
                       ValueListenableBuilder(
@@ -241,12 +236,13 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                               // color: widget.theme.brightness != Brightness.light
                               //     ? Colors.white
                               //     : Colors.black,
-                              color: Colors.white,
+                              color: widget.theme.colorScheme.onSurface,
                             ),
                           );
                         },
                       ),
                     ],
+                  ),
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -276,7 +272,7 @@ class _PointsSummaryCard extends State<PointsSummaryCard>
                           // color: widget.theme.brightness != Brightness.light
                           //     ? Colors.white
                           //     : Colors.black,
-                          color: Colors.white,
+                          color: widget.theme.colorScheme.onSurface,
                         ),
                       ),
                     ),

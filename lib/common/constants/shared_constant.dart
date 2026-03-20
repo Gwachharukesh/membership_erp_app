@@ -11,11 +11,12 @@ class SharedConstant {
   static const String loginPassword = 'loginPassword';
   static const String loginUserName = 'loginUserName';
   static const String userName = 'userName';
+  static const String userImage = 'userImage';
   static const String userAlreadyRegistered = 'userAlreadyRegistered';
 
   static const String gpsSyncInterval = 'gpsSyncInterval';
   static const String gpsSyncMethod = 'gpsSyncMethod';
-  static const String masterToken = 'masterTOken';
+  static const String masterToken = 'masterToken';
   static const String customerCode = 'customerCode';
   static const String expiresIn = 'expiresIn';
   static const String issued = 'issued';

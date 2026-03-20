@@ -1,3 +1,5 @@
+import 'package:mart_erp/features/dashboard-summary/model/mart_dashboard_model.dart';
+
 import '../model/home_models.dart';
 
 abstract class HomeRepository {
@@ -12,6 +14,7 @@ class HomeData {
     required this.flashDeals,
     required this.newArrivals,
     required this.recommended,
+    this.dashboardSummary,
   });
 
   final List<HomeBanner> banners;
@@ -20,4 +23,5 @@ class HomeData {
   final List<HomeProduct> flashDeals;
   final List<HomeProduct> newArrivals;
   final List<HomeProduct> recommended;
+  final DashboardSummaryModel? dashboardSummary;
 }

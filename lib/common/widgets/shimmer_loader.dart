@@ -33,7 +33,7 @@ class ShimmerLoader extends StatelessWidget {
   }
 }
 
-/// Shimmer placeholder for a product card.
+/// Shimmer placeholder for a product card (Flipkart-style).
 class ShimmerProductCard extends StatelessWidget {
   const ShimmerProductCard({super.key, this.width = 160});
 
@@ -41,10 +41,110 @@ class ShimmerProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShimmerLoader(
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final cardColor = theme.cardColor;
+
+    return Container(
       width: width,
-      height: 220,
-      borderRadius: 12,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Product Image Placeholder
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: double.infinity,
+              height: width - 16, // Square aspect ratio for product
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // Product Name Line 1
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: double.infinity,
+              height: 10,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+
+          // Product Name Line 2 (Shorter)
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: width * 0.7,
+              height: 10,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // Rating/Reviews placeholder
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: width * 0.5,
+              height: 8,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // Price placeholder
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: width * 0.6,
+              height: 12,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+
+          // Discount/Original price placeholder
+          Shimmer.fromColors(
+            baseColor: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+            highlightColor: isDark ? Colors.grey[600]! : Colors.grey[100]!,
+            child: Container(
+              width: width * 0.5,
+              height: 10,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

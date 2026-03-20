@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mart_erp/common/constants/paddng_constants.dart';
+import 'package:mart_erp/config/routes/routes.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
@@ -23,13 +24,21 @@ class CategorySection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Categories",
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+            Flexible(
+              child: Text(
+                "Categories",
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            TextButton(onPressed: () {}, child: const Text("See All")),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, RouteHelper.categories),
+              child: const Text("See All"),
+            ),
           ],
         ),
 
