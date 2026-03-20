@@ -21,6 +21,11 @@ class HomeRepositoryImpl implements HomeRepository {
     Icons.breakfast_dining,
   ];
 
+  // Constant mapping from category index to IconData for proper tree-shaking
+  static IconData getIconForCategory(int index) {
+    return _categoryIcons[index.clamp(0, _categoryIcons.length - 1)];
+  }
+
   @override
   Future<HomeData> loadHomeData() async {
     // Load dashboard summary and home data in parallel
@@ -65,7 +70,7 @@ class HomeRepositoryImpl implements HomeRepository {
       (i) => HomeCategory(
         id: 'c$i',
         name: categoryNames[i],
-        iconCodePoint: _categoryIcons[i].codePoint,
+        iconCodePoint: i, // Store index instead of codePoint
       ),
     );
 

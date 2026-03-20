@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:mart_erp/features/nepal_payment/screens/payment_checkout_screen.dart';
 import 'package:mart_erp/features/notification/views/notification_view.dart';
 
 class DashboardAppbar extends StatelessWidget {
@@ -11,6 +14,14 @@ class DashboardAppbar extends StatelessWidget {
   final int _selectedIndex;
   final ThemeData theme;
 
+  /// Generate a unique merchant transaction ID
+  /// Format: MERCHANT_TIMESTAMP_RANDOM
+  String _generateMerchantTxnId() {
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+    final random = Random().nextInt(100000); // 5-digit random number
+    return 'MRT${timestamp}_$random';
+  }
+
   @override
   Widget build(BuildContext context) {
     switch (_selectedIndex) {
@@ -22,11 +33,24 @@ class DashboardAppbar extends StatelessWidget {
             icon: const Icon(Icons.menu_rounded),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
-          title: Text(
-            "Mart ERP",
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.primary,
+          title: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PaymentCheckoutScreen(
+                    amount: '500.00',
+                    merchantTxnId: _generateMerchantTxnId(),
+                  ),
+                ),
+              );
+            },
+            child: Text(
+              "Mart ERP",
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
           actions: [
@@ -65,7 +89,9 @@ class DashboardAppbar extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: Text(
             "My Account",
-            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           actions: [
             IconButton(

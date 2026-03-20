@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mart_erp/features/catalog/repository/catalog_repository_impl.dart';
 import 'package:mart_erp/features/catalog/screen/product_listing_screen.dart';
 import 'package:mart_erp/features/home/model/home_models.dart';
+import 'package:mart_erp/features/home/repository/home_repository_impl.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -164,7 +165,7 @@ class _CategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
-                  IconData(category.iconCodePoint, fontFamily: 'MaterialIcons'),
+                  HomeRepositoryImpl.getIconForCategory(category.iconCodePoint),
                   size: 28,
                   color: colorScheme.primary,
                 ),

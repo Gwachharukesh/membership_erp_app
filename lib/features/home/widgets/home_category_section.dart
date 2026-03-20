@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mart_erp/common/widgets/shimmer_loader.dart';
 import 'package:mart_erp/features/home/model/home_models.dart';
+import 'package:mart_erp/features/home/repository/home_repository_impl.dart';
 
 /// Flipkart-style horizontal category chips.
 class HomeCategorySection extends StatelessWidget {
@@ -96,7 +97,7 @@ class _CategoryChip extends StatelessWidget {
                   ],
                 ),
                 child: Icon(
-                  IconData(category.iconCodePoint, fontFamily: 'MaterialIcons'),
+                  HomeRepositoryImpl.getIconForCategory(category.iconCodePoint),
                   size: 28,
                   color: colorScheme.primary,
                 ),
