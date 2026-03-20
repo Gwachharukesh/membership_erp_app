@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:mart_erp/auth/repository/auth_repository.dart';
+import 'package:mart_erp/auth/view_model/auth_bloc.dart';
 import 'package:mart_erp/config/dio/chuker_config/chucker_config.dart';
 import 'package:mart_erp/features/home/bloc/home_bloc.dart';
 import 'package:mart_erp/features/home/repository/home_repository_impl.dart';
@@ -50,8 +52,10 @@ class MyApp extends StatelessWidget {
     final NotificationRepository notificationRepository =
         NotificationRepositoryImpl();
     final OrderRepository orderRepository = OrderRepositoryImpl();
+    final AuthRepository authRepository = AuthRepository();
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => AuthBloc(authRepository)),
         BlocProvider(
           create: (context) => NotificationBloc(notificationRepository),
         ),
