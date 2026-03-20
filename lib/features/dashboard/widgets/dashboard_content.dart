@@ -26,7 +26,7 @@ class DashboardContent extends StatelessWidget {
       case 1:
         return MyOrderView();
       case 2:
-        return ProfileView();
+        return const ProfileView();
       default:
         return const HomeScreen();
     }

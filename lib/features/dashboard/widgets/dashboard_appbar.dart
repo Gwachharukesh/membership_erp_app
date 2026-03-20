@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mart_erp/features/notification/views/notification_view.dart';
 
-import '../../../config/theme/view_model/theme_notifier.dart';
-
 class DashboardAppbar extends StatelessWidget {
   const DashboardAppbar({
     super.key,
@@ -63,17 +61,18 @@ class DashboardAppbar extends StatelessWidget {
         return AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          centerTitle: true,
+          surfaceTintColor: Colors.transparent,
           automaticallyImplyLeading: false,
-          title: Text("Profile", style: theme.textTheme.titleMedium),
+          title: Text(
+            "My Account",
+            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+          ),
           actions: [
             IconButton(
-              onPressed: () {
-                ThemeNotifier.toggleTheme();
-              },
-              icon: Icon(Icons.dark_mode_rounded),
+              onPressed: () {},
+              icon: const Icon(Icons.settings_outlined, size: 22),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.logout_outlined)),
+            const SizedBox(width: 4),
           ],
         );
       default:
