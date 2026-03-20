@@ -59,30 +59,28 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   sliver: SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio: 0.85,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final cat = _categories![index];
-                        return _CategoryCard(
-                          category: cat,
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ProductListingScreen(
-                                categoryId: cat.id,
-                                categoryName: cat.name,
-                              ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 0.85,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                        ),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final cat = _categories![index];
+                      return _CategoryCard(
+                        category: cat,
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProductListingScreen(
+                              categoryId: cat.id,
+                              categoryName: cat.name,
                             ),
                           ),
-                        );
-                      },
-                      childCount: _categories!.length,
-                    ),
+                        ),
+                      );
+                    }, childCount: _categories!.length),
                   ),
                 ),
               ],
@@ -120,10 +118,7 @@ class _CategoryShimmer extends StatelessWidget {
 }
 
 class _CategoryCard extends StatelessWidget {
-  const _CategoryCard({
-    required this.category,
-    required this.onTap,
-  });
+  const _CategoryCard({required this.category, required this.onTap});
 
   final HomeCategory category;
   final VoidCallback onTap;

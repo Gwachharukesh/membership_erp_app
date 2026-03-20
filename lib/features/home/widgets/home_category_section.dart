@@ -55,10 +55,7 @@ class HomeCategorySection extends StatelessWidget {
 }
 
 class _CategoryChip extends StatelessWidget {
-  const _CategoryChip({
-    required this.category,
-    this.onTap,
-  });
+  const _CategoryChip({required this.category, this.onTap});
 
   final HomeCategory category;
   final VoidCallback? onTap;
